@@ -1,5 +1,8 @@
 ﻿using Autofac;
-    
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +17,11 @@ namespace Business.DependencyResolvers.Autofac
         {
             //builder.RegisterType<ParticipantManager>().As<IParticipantService>().SingleInstance();
             //builder.RegisterType<EFParticipantDal>().As<IParticipantDal>().SingleInstance();
+            builder.RegisterType<ProductDetailDal>().As<IProductDetailDal>().SingleInstance();
+            builder.RegisterType<ProductDetailManager>().As<IProductDetailService>().SingleInstance();
 
-            
 
-           
+
 
 
 

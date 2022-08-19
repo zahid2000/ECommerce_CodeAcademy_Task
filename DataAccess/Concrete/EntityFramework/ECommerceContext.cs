@@ -10,7 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class ECommerceContext:DbContext
     {
-        public DbSet<ProductDetail> ProductDetails { get; set; }
+        public DbSet<ProductDetail>? ProductDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
