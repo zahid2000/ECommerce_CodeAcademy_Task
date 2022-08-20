@@ -5,6 +5,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities;
+using Entities.Dto;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,23 @@ namespace Business.Concrete
         {
             _productDetailDal = productDetailDal;
         }
+        public IDataResult<List<ProductDetail>> GetAll()
+        {
+           
 
+            var result = _productDetailDal.GetAll();
+            if (result == null)
+            {
+                return new ErrorDataResult<List<ProductDetail>>(Messages.NotFound);
+            }
+            return new SuccessDataResult<List<ProductDetail>>(result);
+        }
+
+        public IDataResult<List<ReportResponseDto>> SendReport(ReportRequestDto reportRequestDto)
+        {
+            var result = _productDetailDal.GetReport(reportRequestDto);
+            return new SuccessDataResult<List<ReportResponseDto>>();
+        }
         public IResult Add(ProductDetail productDetail)
         {
             _productDetailDal.Add(productDetail);
@@ -82,15 +99,6 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<List<ProductDetail>> GetAll()
-        {
-            var result = _productDetailDal.GetAll();
-            if (result == null)
-            {
-                return new ErrorDataResult<List<ProductDetail>>(Messages.NotFound);
-            }
-            return new SuccessDataResult<List<ProductDetail>>(result);
-        }
-
+       
     }
 }

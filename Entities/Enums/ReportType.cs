@@ -2,6 +2,6 @@
 {
     public enum ReportType
     {
-        Segment, Country, Product, DiscountBand
+        Segment=1, Country, Product, DiscountBand
     }
 }

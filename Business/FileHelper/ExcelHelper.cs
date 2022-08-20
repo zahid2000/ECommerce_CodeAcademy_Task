@@ -30,10 +30,10 @@ namespace Business.FileHelper
                         productDetails.Add(new ProductDetail
                         {
 
-                            Segment = worksheet.Cells[row, 1].Value.ToString().Trim(),
-                            Country = worksheet.Cells[row, 2].Value.ToString().Trim(),
-                            Product = worksheet.Cells[row, 3].Value.ToString().Trim(),
-                            DiscountBand = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                            Segment = worksheet.Cells[row, 1].Value.ToString()?.Trim(),
+                            Country = worksheet.Cells[row, 2].Value.ToString()?.Trim(),
+                            Product = worksheet.Cells[row, 3].Value.ToString()?.Trim(),
+                            DiscountBand = worksheet.Cells[row, 4].Value.ToString()?.Trim(),
                             UnitsSold = Convert.ToDouble(worksheet.Cells[row, 5].Value),
                             ManufacturingPrice = Convert.ToDouble(worksheet.Cells[row, 6].Value),
                             SalePrice = Convert.ToDouble(worksheet.Cells[row, 7].Value),
@@ -65,7 +65,7 @@ namespace Business.FileHelper
                     ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                     for (int i = 0; i < worksheet.Dimension.Columns; i++)
                     {
-                        var result = CheckTemplateHeader(worksheet.Cells[1, i + 1].Value.ToString(), productDetailsTemplateValues[i]);
+                        var result = CheckTemplateHeader(worksheet.Cells[1, i + 1].Value.ToString()!, productDetailsTemplateValues[i]);
                         if (!result.Success)
                         {
                             return result;

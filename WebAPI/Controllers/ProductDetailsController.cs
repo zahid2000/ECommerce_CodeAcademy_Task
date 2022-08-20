@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,17 @@ namespace WebApi.Controllers
         public IActionResult GetAll()
         {
             var result = _productDetailService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("sendreport")]
+        public IActionResult SendReport(ReportRequestDto reportRequestDto)
+        {
+            var result = _productDetailService.SendReport(reportRequestDto);
             if (result.Success)
             {
                 return Ok(result);
