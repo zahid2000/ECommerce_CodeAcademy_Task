@@ -18,5 +18,13 @@ namespace Business.Constants
         public static string Deleted = "Məlumat silindi";
         public static string Listed = "Məlumatlar listələndi";
         public static string NotFound="Məlumat tapılmadı";
+        public static string ReportTypeDoesNotExists="Bu tipdə hesabat növü mövcud deyil";
+        public static string SendedReport="Hesabat göndərildi";
+        public static string IncorrectEmailType="Email dogru deyil";
+        public static string EmailIsNull="Email siyahısı boşdur";
+        public static string EmailIsNotEqual="Email 'code.edu.az'    sablonuna uygun deyil";
+        public static string DateMustBeExists="Tarix boş ola bilməz";
+        public static string IsSameDate = "Girilən tarixlər eynidir";
+        public static string IncorrectDateTime= "Girilən tarixlər dogru deyil";
     }
 }

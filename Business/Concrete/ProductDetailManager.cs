@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Business.Concrete
@@ -25,7 +26,7 @@ namespace Business.Concrete
         }
         public IDataResult<List<ProductDetail>> GetAll()
         {
-           
+
 
             var result = _productDetailDal.GetAll();
             if (result == null)
@@ -35,10 +36,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetail>>(result);
         }
 
-        public IDataResult<List<ReportResponseDto>> SendReport(ReportRequestDto reportRequestDto)
+        public IResult SendReport(ReportRequestDto reportRequestDto)
         {
-            var result = _productDetailDal.GetReport(reportRequestDto);
-            return new SuccessDataResult<List<ReportResponseDto>>();
+            var result = BusinessRules.Run(CheckReportType(reportRequestDto), CheckEmails(reportRequestDto.AcceptorEmails), ChechkDates(reportRequestDto));
+            if (result != null)
+            {
+                return result;
+            }
+            var reportResult = _productDetailDal.GetReport(reportRequestDto);
+            return new SuccessResult(Messages.SendedReport);
         }
         public IResult Add(ProductDetail productDetail)
         {
@@ -48,7 +54,7 @@ namespace Business.Concrete
 
         public IResult AddProductDetailsFromExcel(IFormFile file)
         {
-           
+
             var result = BusinessRules.Run(CheckIfExcelFileExtensionValid(file), CheckFileMemorySize(file), CheckTemplate(file));
             if (result != null)
             {
@@ -99,6 +105,55 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-       
+        private IResult CheckReportType(ReportRequestDto reportRequestDto)
+        {
+            if (!Enum.IsDefined(typeof(ReportType), reportRequestDto.ReportType))
+            {
+                return new ErrorResult(Messages.ReportTypeDoesNotExists);
+            }
+            return new SuccessResult();
+        }
+        private IResult CheckEmails(string[] emails)
+        {
+            if (emails.Length == 0)
+            {
+                return new ErrorResult(Messages.EmailIsNull);
+            }
+            foreach (string email in emails)
+            {
+                Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!regex.IsMatch(email))
+                {
+                    return new ErrorResult(Messages.IncorrectEmailType + "(" + email + ")");
+                }
+                regex = new Regex(@"^([\w\.\-]+)@code.edu.az$");
+                if (!regex.IsMatch(email))
+                {
+                    return new ErrorResult(Messages.EmailIsNotEqual + "(" + email + ")");
+                }
+
+            }
+            return new SuccessResult();
+        }
+        private IResult ChechkDates(ReportRequestDto reportRequestDto)
+        {
+            if (reportRequestDto.StartDate == null || reportRequestDto.EndDate == null)
+            {
+                return new ErrorResult(Messages.DateMustBeExists);
+            }
+
+            int result = DateTime.Compare(reportRequestDto.StartDate, reportRequestDto.EndDate);
+
+            if (result < 0)
+                return new SuccessResult();
+            else if (result == 0)
+
+                return new SuccessResult(Messages.IsSameDate);
+            else
+                return new ErrorResult(Messages.IncorrectDateTime);
+
+        }
+
+
     }
 }
