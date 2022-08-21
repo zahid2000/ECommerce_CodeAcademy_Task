@@ -9,7 +9,7 @@ namespace Entities.Dto
 {
     public class ReportResponseDto:IDto 
     {
-        public string? ReportType { get; set; }
+        public string? ReportValue { get; set; }
         public int? ProductCount { get; set; }
         public double? TotalDiscount { get; set; }
         public double? TotalProfit { get; set; }

@@ -26,7 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                     .GroupBy(x => reportType == 1 ? x.Segment : reportType == 2 ? x.Country : reportType == 3 ? x.Product : reportType == 4 ? x.DiscountBand : x.Country)
                .Select(x => new ReportResponseDto
                {
-                   ReportType = x.Key,
+                   ReportValue = x.Key,
                    ProductCount = x.Count(),
                    TotalSales = x.Sum(s => s.Sales),
                    TotalDiscount = x.Sum(s => s.Discounts),

@@ -16,7 +16,5 @@ namespace Business.Abstract
         IResult SendReport(ReportRequestDto reportRequestDto);
         IResult AddProductDetailsFromExcel(IFormFile file);
         IResult Add(ProductDetail productDetail);
-        IResult Update(ProductDetail productDetail);    
-        IResult Delete(ProductDetail productDetail);
     }
 }

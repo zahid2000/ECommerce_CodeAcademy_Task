@@ -19,6 +19,7 @@ namespace Business.DependencyResolvers.Autofac
             //builder.RegisterType<EFParticipantDal>().As<IParticipantDal>().SingleInstance();
             builder.RegisterType<ProductDetailDal>().As<IProductDetailDal>().SingleInstance();
             builder.RegisterType<ProductDetailManager>().As<IProductDetailService>().SingleInstance();
+            builder.RegisterType<MailManager>().As<IMailService>().SingleInstance();
 
 
 
