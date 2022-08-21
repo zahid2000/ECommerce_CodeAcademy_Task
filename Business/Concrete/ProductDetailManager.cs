@@ -19,9 +19,9 @@ namespace Business.Concrete
     public class ProductDetailManager : IProductDetailService
     {
         private IProductDetailDal _productDetailDal;
-        private  IMailService _mailService;
+        private IMailService _mailService;
 
-        public ProductDetailManager(IProductDetailDal productDetailDal,IMailService mailService)
+        public ProductDetailManager(IProductDetailDal productDetailDal, IMailService mailService)
         {
             _productDetailDal = productDetailDal;
             _mailService = mailService;
@@ -121,10 +121,10 @@ namespace Business.Concrete
                     return new ErrorResult(Messages.IncorrectEmailType + "(" + email + ")");
                 }
                 regex = new Regex(@"^([\w\.\-]+)@code.edu.az$");
-                //if (!regex.IsMatch(email))
-                //{
-                //    return new ErrorResult(Messages.EmailIsNotEqual + "(" + email + ")");
-                //}
+                if (!regex.IsMatch(email))
+                {
+                    return new ErrorResult(Messages.EmailIsNotEqual + "(" + email + ")");
+                }
 
             }
             return new SuccessResult();
@@ -150,18 +150,18 @@ namespace Business.Concrete
 
         private IResult SendMail(ReportRequestDto reportRequestDto, List<ReportResponseDto> reports)
         {
-            string reportType = Enum.GetName(typeof(ReportType), reportRequestDto.ReportType);
+            string? reportType = Enum.GetName(typeof(ReportType), reportRequestDto.ReportType);
 
             var htmlBody = GetHtmlBody(reportRequestDto, reports);
             Mail mail = new();
-            mail.TextBody =reportType+ " hesabat";
+            mail.TextBody = reportType + " Hesabat";
             mail.HtmlBody = htmlBody;
-            mail.Subject = "Hesabat";
-            
+            mail.Subject = reportType + " Hesabat"; ;
+
             foreach (var AcceptorEmail in reportRequestDto.AcceptorEmails)
             {
                 mail.ToEmail = AcceptorEmail;
-               _mailService.SendMail(mail);
+                _mailService.SendMail(mail);
             }
 
             return new SuccessResult();
@@ -170,9 +170,10 @@ namespace Business.Concrete
         private static string GetHtmlBody(ReportRequestDto reportRequestDto, List<ReportResponseDto> reports)
         {
             string htmlBody;
-            string reportType = Enum.GetName(typeof(ReportType), reportRequestDto.ReportType);
+            string? reportType = Enum.GetName(typeof(ReportType), reportRequestDto.ReportType);
             htmlBody =
                 "<h1 align=\"center\" style=\"color: green;\">HESABAT</h1>" +
+                "</br>" +
                  "<table border=" + 1 + " cellpadding=" + 0 + " cellspacing=" + 0 + " width = " + 800 + ">" +
                  "<tr bgcolor='#4da6ff' style=\"color: #fff\">" +
                 $"<th><b>{reportType}</b></th> " +
@@ -181,30 +182,20 @@ namespace Business.Concrete
                 "<th> <b>Satış toplamı </b></th>" +
                 "<th> <b>Qazanc toplamı</b> </th>" +
                 "</tr>";
-            //"<tr bgcolor='#4da6ff'>" +
-            //   $"<td><b>{reportType}</b></td>" +
-            //    " <td> <b> Required Qunatity </b> </td>" +
-            //    " <td> <b> Required Qunatity </b> </td>" +
-            //    " <td> <b> Required Qunatity </b> </td>" +
-            //    "</tr> </table>";
 
 
             foreach (var report in reports)
             {
-                htmlBody+= "<tr bgcolor='#fff'  align=\"center\">" +
+                htmlBody += "<tr bgcolor='#fff'  align=\"center\" style=\"width: 100%\">" +
                     $"<td>{report.ReportValue}</td>" +
                     $"<td>{report.ProductCount}</td>" +
-                    $"<td>{Math.Round(Convert.ToDecimal(report.TotalDiscount),2)}"+" $"+"</td>" +
-                    $"<td>{Math.Round(Convert.ToDecimal(report.TotalSales),2)}" + " $" + "</td>" +
-                    $"<td>{Math.Round(Convert.ToDecimal(report.TotalProfit),2)}" + " $" + "</td>" +
+                    $"<td>{Math.Round(Convert.ToDecimal(report.TotalDiscount), 2)}" + " $" + "</td>" +
+                    $"<td>{Math.Round(Convert.ToDecimal(report.TotalSales), 2)}" + " $" + "</td>" +
+                    $"<td>{Math.Round(Convert.ToDecimal(report.TotalProfit), 2)}" + " $" + "</td>" +
                     "</tr> ";
             }
             htmlBody += "</ table > ";
-            //htmlBody= "<table border=" + 1 + " cellpadding=" + 0 + " cellspacing=" + 0 + " width = " + 400 + ">" +
-            //    "<tr bgcolor='#4da6ff'>" +
-            //    "<td><b>Inventory Item</b></td>" +
-            //    " <td> <b> Required Qunatity </b> </td>" +
-            //    "</tr> </table>";
+
             return htmlBody;
         }
 

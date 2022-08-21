@@ -22,7 +22,7 @@ namespace Business.Constants
         public static string SendedReport="Hesabat göndərildi";
         public static string IncorrectEmailType="Email dogru deyil";
         public static string EmailIsNull="Email siyahısı boşdur";
-        public static string EmailIsNotEqual="Email 'code.edu.az'    sablonuna uygun deyil";
+        public static string EmailIsNotEqual="Email 'code.edu.az' sablonuna uygun deyil";
         public static string DateMustBeExists="Tarix boş ola bilməz";
         public static string IsSameDate = "Girilən tarixlər eynidir";
         public static string IncorrectDateTime= "Girilən tarixlər dogru deyil";
