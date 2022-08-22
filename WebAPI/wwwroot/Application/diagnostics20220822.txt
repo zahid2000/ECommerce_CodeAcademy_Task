@@ -1,0 +1,75 @@
+2022-08-22 20:28:28.413 +04:00 [INF] Starting web host
+2022-08-22 20:28:30.036 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-08-22 20:28:30.038 +04:00 [INF] Hosting environment: Development
+2022-08-22 20:28:30.040 +04:00 [INF] Content root path: C:\Users\user\Desktop\CodeAcademy\Asp.NetCore Backend\WebApi
+2022-08-22 20:28:30.059 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44370/swagger/index.html - -
+2022-08-22 20:28:30.313 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44370/_framework/aspnetcore-browser-refresh.js - -
+2022-08-22 20:28:30.318 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44370/_framework/aspnetcore-browser-refresh.js - - - 200 11970 application/javascript;+charset=utf-8 3.6797ms
+2022-08-22 20:28:30.318 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44370/swagger/index.html - - - 200 - text/html;charset=utf-8 261.9097ms
+2022-08-22 20:28:30.520 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44370/swagger/v1/swagger.json - -
+2022-08-22 20:28:30.621 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44370/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 100.2009ms
+2022-08-22 20:28:38.461 +04:00 [INF] Request starting HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundarysjUdj94jmef7M0Yf 267
+2022-08-22 20:28:38.465 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:28:38.466 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:28:38.504 +04:00 [INF] Executing endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:28:38.526 +04:00 [INF] Route matched with {action = "AddProductDetailsFromExcel", controller = "ProductDetails"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddProductDetailsFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller WebApi.Controllers.ProductDetailsController (WebApi).
+2022-08-22 20:28:43.742 +04:00 [INF] Accepted UploadData Request
+2022-08-22 20:28:46.571 +04:00 [ERR] Return unsucces Response from UploadData Request 
+2022-08-22 20:28:46.577 +04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Core.Utilities.Results.ErrorResult'.
+2022-08-22 20:28:46.585 +04:00 [INF] Executed action WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi) in 8055.0607ms
+2022-08-22 20:28:46.587 +04:00 [INF] Executed endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:28:46.590 +04:00 [INF] Request finished HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundarysjUdj94jmef7M0Yf 267 - 400 - application/json;+charset=utf-8 8128.6156ms
+2022-08-22 20:29:57.608 +04:00 [INF] Request starting HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryG8JN2ypzrRZJ4poS 267
+2022-08-22 20:29:57.609 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:29:57.609 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:29:57.611 +04:00 [INF] Executing endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:29:57.611 +04:00 [INF] Route matched with {action = "AddProductDetailsFromExcel", controller = "ProductDetails"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddProductDetailsFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller WebApi.Controllers.ProductDetailsController (WebApi).
+2022-08-22 20:29:57.612 +04:00 [INF] Accepted UploadData Request
+2022-08-22 20:29:57.613 +04:00 [ERR] Return unsucces Response from UploadData Request 
+2022-08-22 20:29:57.613 +04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Core.Utilities.Results.ErrorResult'.
+2022-08-22 20:29:57.614 +04:00 [INF] Executed action WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi) in 2.2145ms
+2022-08-22 20:29:57.614 +04:00 [INF] Executed endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:29:57.614 +04:00 [INF] Request finished HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryG8JN2ypzrRZJ4poS 267 - 400 - application/json;+charset=utf-8 5.8076ms
+2022-08-22 20:30:08.795 +04:00 [INF] Request starting HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryEOy6AFaFDjwylHXQ 267
+2022-08-22 20:30:08.796 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:30:08.796 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:30:08.796 +04:00 [INF] Executing endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:30:08.796 +04:00 [INF] Route matched with {action = "AddProductDetailsFromExcel", controller = "ProductDetails"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddProductDetailsFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller WebApi.Controllers.ProductDetailsController (WebApi).
+2022-08-22 20:30:08.797 +04:00 [INF] Accepted UploadData Request
+2022-08-22 20:30:08.797 +04:00 [ERR] Return unsucces Response from UploadData Request 
+2022-08-22 20:30:08.797 +04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Core.Utilities.Results.ErrorResult'.
+2022-08-22 20:30:08.799 +04:00 [INF] Executed action WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi) in 2.0129ms
+2022-08-22 20:30:08.799 +04:00 [INF] Executed endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:30:08.799 +04:00 [INF] Request finished HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryEOy6AFaFDjwylHXQ 267 - 400 - application/json;+charset=utf-8 3.4595ms
+2022-08-22 20:33:42.931 +04:00 [INF] Starting web host
+2022-08-22 20:33:44.362 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-08-22 20:33:44.365 +04:00 [INF] Hosting environment: Development
+2022-08-22 20:33:44.366 +04:00 [INF] Content root path: C:\Users\user\Desktop\CodeAcademy\Asp.NetCore Backend\WebApi
+2022-08-22 20:33:44.385 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44370/swagger/index.html - -
+2022-08-22 20:33:44.636 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44370/_framework/aspnetcore-browser-refresh.js - -
+2022-08-22 20:33:44.646 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44370/swagger/index.html - - - 200 - text/html;charset=utf-8 264.5250ms
+2022-08-22 20:33:44.646 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44370/_framework/aspnetcore-browser-refresh.js - - - 200 11970 application/javascript;+charset=utf-8 4.3312ms
+2022-08-22 20:33:44.833 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44370/swagger/v1/swagger.json - -
+2022-08-22 20:33:44.940 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44370/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 106.2462ms
+2022-08-22 20:33:51.420 +04:00 [INF] Request starting HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryF3xgMVZqEt8zdr0u 267
+2022-08-22 20:33:51.424 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:33:51.425 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:33:51.463 +04:00 [INF] Executing endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:33:51.481 +04:00 [INF] Route matched with {action = "AddProductDetailsFromExcel", controller = "ProductDetails"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddProductDetailsFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller WebApi.Controllers.ProductDetailsController (WebApi).
+2022-08-22 20:33:51.512 +04:00 [INF] Accepted UploadData Request
+2022-08-22 20:33:51.514 +04:00 [ERR] Return unsucces Response from UploadData Request 
+2022-08-22 20:33:51.519 +04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Core.Utilities.Results.ErrorResult'.
+2022-08-22 20:33:51.528 +04:00 [INF] Executed action WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi) in 42.7749ms
+2022-08-22 20:33:51.530 +04:00 [INF] Executed endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:33:51.531 +04:00 [INF] Request finished HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryF3xgMVZqEt8zdr0u 267 - 400 - application/json;+charset=utf-8 111.0242ms
+2022-08-22 20:34:29.936 +04:00 [INF] Request starting HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryzSfsZOSWoAc9VsvR 267
+2022-08-22 20:34:29.936 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:34:29.936 +04:00 [INF] CORS policy execution successful.
+2022-08-22 20:34:29.937 +04:00 [INF] Executing endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:34:29.938 +04:00 [INF] Route matched with {action = "AddProductDetailsFromExcel", controller = "ProductDetails"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddProductDetailsFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller WebApi.Controllers.ProductDetailsController (WebApi).
+2022-08-22 20:34:29.939 +04:00 [INF] Accepted UploadData Request
+2022-08-22 20:34:29.939 +04:00 [ERR] Return unsucces Response from UploadData Request 
+2022-08-22 20:34:29.939 +04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Core.Utilities.Results.ErrorResult'.
+2022-08-22 20:34:29.941 +04:00 [INF] Executed action WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi) in 2.6159ms
+2022-08-22 20:34:29.941 +04:00 [INF] Executed endpoint 'WebApi.Controllers.ProductDetailsController.AddProductDetailsFromExcel (WebApi)'
+2022-08-22 20:34:29.941 +04:00 [INF] Request finished HTTP/2 POST https://localhost:44370/api/ProductDetails/UploadData multipart/form-data;+boundary=----WebKitFormBoundaryzSfsZOSWoAc9VsvR 267 - 400 - application/json;+charset=utf-8 4.9378ms

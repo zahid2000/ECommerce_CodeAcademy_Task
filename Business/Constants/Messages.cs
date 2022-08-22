@@ -8,7 +8,7 @@ namespace Business.Constants
         public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
 
         public static string InvalidImageExtension = "Etibarsiz fayl uzantısı, şəkil üçün uyğun olan fayl uzantıları" + string.Join(",", ValidImageFileTypes);
-        public static string[] ValidExcelFileTypes= { ".XLS", ".XLSX" };
+        public static string[] ValidExcelFileTypes= { ".xls", ".xlsx" };
         public static string InvalidExcelExtension = "Etibarsiz fayl uzantısı, excel faylı üçün uyğun olan  uzantılar" + string.Join(",", ValidExcelFileTypes);
         public static string FileMemorySizeIsLong="Yüklənmiş faylın yaddaşı 5 mb dan böyükdür!";
 

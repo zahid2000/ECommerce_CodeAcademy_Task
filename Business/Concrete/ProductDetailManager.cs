@@ -77,8 +77,12 @@ namespace Business.Concrete
 
         public IResult AddProductDetailsFromExcel(IFormFile file)
         {
-
-            var result = BusinessRules.Run(CheckIfExcelFileExtensionValid(file), CheckFileMemorySize(file), CheckTemplate(file));
+            var result = CheckIfExcelFileExtensionValid(file);
+            if (!result.Success)
+            {
+                return result;
+            }
+             result = BusinessRules.Run( CheckFileMemorySize(file), CheckTemplate(file));
             if (result != null)
             {
                 _logger.LogError(result.Message);
@@ -101,7 +105,7 @@ namespace Business.Concrete
 
         private IResult CheckIfExcelFileExtensionValid(IFormFile file)
         {
-            bool isValidFileExtension = Messages.ValidExcelFileTypes.Any(t => t == Path.GetExtension(file.FileName).ToUpper());
+            bool isValidFileExtension = Messages.ValidExcelFileTypes.Any(t => t == Path.GetExtension(file.FileName).ToLower());
             if (!isValidFileExtension)
                 return new ErrorResult(Messages.InvalidExcelExtension);
             return new SuccessResult();
