@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Dto;
-using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -10,40 +10,42 @@ namespace WebApi.Controllers
     public class ProductDetailsController : ControllerBase
     {
         private IProductDetailService _productDetailService;
-        public ProductDetailsController(IProductDetailService productDetailService)
+        private  ILogger<ProductDetailsController> _logger;
+
+        public ProductDetailsController(IProductDetailService productDetailService,ILogger<ProductDetailsController> logger)
         {
             _productDetailService = productDetailService;
+            _logger = logger;
         }
 
-        [HttpPost("File")]
+        [HttpPost("UploadData")]
         public IActionResult AddProductDetailsFromExcel(IFormFile file)
         {
-            var result=_productDetailService.AddProductDetailsFromExcel(file);
+            _logger.LogInformation("Accepted UploadData Request");
+
+            var result =_productDetailService.AddProductDetailsFromExcel(file);
             if (result.Success)
             {
+                _logger.LogInformation("Return success Response from UploadData Request ");
                 return Ok(result);
             }
+            _logger.LogError("Return unsucces Response from UploadData Request ");
             return BadRequest(result);
         }
-        [HttpGet("getall")]
-        public IActionResult GetAll()
-        {
-            var result = _productDetailService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        
 
         [HttpPost("sendreport")]
         public IActionResult SendReport(ReportRequestDto reportRequestDto)
         {
+            _logger.LogInformation("Accepted SendReport Request");
+
             var result = _productDetailService.SendReport(reportRequestDto);
             if (result.Success)
             {
+                _logger.LogInformation("Return success Response from SendReport Request ");
                 return Ok(result);
             }
+            _logger.LogError("Return unsucces Response from SendReport Request ");
             return BadRequest(result);
         }
     }

@@ -7,10 +7,12 @@ using DataAccess.Abstract;
 using Entities;
 using Entities.Dto;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -20,21 +22,25 @@ namespace Business.Concrete
     {
         private IProductDetailDal _productDetailDal;
         private IMailService _mailService;
+        private  ILogger<ProductDetailManager> _logger;
 
-        public ProductDetailManager(IProductDetailDal productDetailDal, IMailService mailService)
+        public ProductDetailManager(IProductDetailDal productDetailDal, IMailService mailService, ILogger<ProductDetailManager> logger)
         {
             _productDetailDal = productDetailDal;
             _mailService = mailService;
+            _logger = logger;
         }
         public IDataResult<List<ProductDetail>> GetAll()
         {
-
-
             var result = _productDetailDal.GetAll();
+            _logger.LogInformation("Call GetAll Function");
+
             if (result == null)
             {
+                _logger.LogError("Not found Products");
                 return new ErrorDataResult<List<ProductDetail>>(Messages.NotFound);
             }
+            _logger.LogInformation("Listed all Products");
             return new SuccessDataResult<List<ProductDetail>>(result);
         }
 
@@ -43,16 +49,29 @@ namespace Business.Concrete
             var result = BusinessRules.Run(CheckReportType(reportRequestDto), CheckEmails(reportRequestDto.AcceptorEmails), ChechkDates(reportRequestDto));
             if (result != null)
             {
+                _logger.LogError(result.Message);
                 return result;
             }
+
             var reportResponseDto = _productDetailDal.GetReport(reportRequestDto);
+            _logger.LogInformation("Call GetReport Function");
+
             SendMail(reportRequestDto, reportResponseDto);
+            _logger.LogInformation("Call SendMail Function");
 
             return new SuccessResult(Messages.SendedReport);
         }
         public IResult Add(ProductDetail productDetail)
         {
+            if (productDetail == null)
+            {
+                _logger.LogError("Product can't be not null");
+                return new ErrorResult("Product can't be not null");
+
+            }
+
             _productDetailDal.Add(productDetail);
+            _logger.LogInformation("Product Added {0}",JsonSerializer.Serialize(productDetail));
             return new SuccessResult(Messages.Added);
         }
 
@@ -62,8 +81,10 @@ namespace Business.Concrete
             var result = BusinessRules.Run(CheckIfExcelFileExtensionValid(file), CheckFileMemorySize(file), CheckTemplate(file));
             if (result != null)
             {
+                _logger.LogError(result.Message);
                 return result;
             }
+            _logger.LogInformation("Excel file reading");
             var productDetails = ExcelHelper.GetProductDetailsFromExcel(file);
             foreach (ProductDetail product in productDetails)
             {
@@ -73,7 +94,8 @@ namespace Business.Concrete
                     return addResult;
                 }
             }
-            return new SuccessResult();
+            _logger.LogInformation("All Products added from Excel file");
+            return new SuccessResult(Messages.UploadData);
 
         }
 
@@ -163,7 +185,7 @@ namespace Business.Concrete
                 mail.ToEmail = AcceptorEmail;
                 _mailService.SendMail(mail);
             }
-
+            _logger.LogInformation("Report Sended AcceptorEmails");
             return new SuccessResult();
         }
 

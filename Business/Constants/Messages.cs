@@ -26,5 +26,6 @@ namespace Business.Constants
         public static string DateMustBeExists="Tarix boş ola bilməz";
         public static string IsSameDate = "Girilən tarixlər eynidir";
         public static string IncorrectDateTime= "Girilən tarixlər dogru deyil";
+        public static string UploadData="Yükləndi";
     }
 }
