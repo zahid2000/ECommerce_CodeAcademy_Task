@@ -14,8 +14,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
 
@@ -28,7 +28,7 @@ jobs:
     - name: Test
       run: dotnet test ECommerce_CodeAcademy_Task/Asp.NetCore Backend.sln --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
 
-    - name: Code Coverage Summary Report
+    - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
         filename: coverage/**/coverage.cobertura.xml
